@@ -8,8 +8,10 @@ Notations, Cost Function, Gradient Descent
 ===================================================
 
 To explain the concepts in this chapter, we first introduce linear regression.
+
 Linear Regression
 ------------------
+
 Linear Regression is a supervised machine learning algorithm where the predicted output is continuous. There are types of linear regression: univariate regression and multivariate regression.
 
 The image below, taken from Andrew Ng's ML lectures, shows the notations we are going to use:
