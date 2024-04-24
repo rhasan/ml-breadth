@@ -4,14 +4,19 @@
     :local:
     :depth: 2
 
+Notations, Cost Function, Gradient Descent
+===================================================
+
+To explain the concepts in this chapter, we first introduce linear regression.
 Linear Regression
-=================
+------------------
 Linear Regression is a supervised machine learning algorithm where the predicted output is continuous. There are types of linear regression: univariate regression and multivariate regression.
 
 The image below, taken from Andrew Ng's ML lectures, shows the notations we are going to use:
 
 .. image:: images/ch1/ch1-notations.png
     :align: center
+
 
 Univariate regression
 ----------------------
@@ -44,13 +49,21 @@ Minimizing the cost function
 .. image:: images/ch1/ch1-minimize-cost.png
     :align: center
 
-* So the overall problem is to find :math:`w` for which :math:`J(w)` will be minimal.
+* So the overall problem is to find :math:`w` for which :math:`J(w)` will be close to the minimum value.
 * For the training data shown in the image below (i.e. the values of math:`X` and math:`y`), we plot some values of :math:`J(w)` for some :math:`w` values.
 
-    * As the image shows, when :math:`w=1`, the value of J(w)` is minimum.
+    * As the image shows, when :math:`w=1`, the value of :math:`J(w)` is minimum.
 
 .. image:: images/ch1/ch1-cost-plot.png
     :align: center
+* Now, if we also consider :math:`b`, the plot for :math:`J` becomes a 3D plot.
 
-* How to choose the value of :math:`w`?
+    * A 3D plot is difficult to interpret.
+    * The more interpretable plot with 3 axes is a contour plot. See the image below for an example.
+    * Each ovals (or eclipses) in a contour plot has the same :math:`J` value.
+
+.. image:: images/ch1/ch1-contour-plot.png
+    :align: center
+
+* How to choose the value of :math:`w` so that `J(w, b)` is close to the minimum value?
 
