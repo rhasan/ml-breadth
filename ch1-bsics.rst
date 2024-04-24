@@ -13,14 +13,44 @@ The image below, taken from Andrew Ng's ML lectures, shows the notations we are 
 .. image:: images/ch1/ch1-notations.png
     :align: center
 
-.. rubric:: Univariate regression
+Univariate regression
+----------------------
+
 Linear regression with one variable (i.e. single feature :math:`x`).
-The image below describes the basic concepts in (univariate) linear regression.
+The image below describes the basic concepts in (univariate) linear regression. In this chapter, we only discuss univariate regression to introduce other machine learning concepts in a simplified manner.
 
 .. image:: images/ch1/univariate-linear-regression.png
     :align: center
 
+Cost function
+--------------
+
+* Cost function measures the error of the model given the parameters of the model (in this case, the parameters are :math:`w` and :math:`b`).
+* The image below shows the squared error cost function.
+
+    * It is taking the errors of all predictions (:math:`m` predictions for :math:`m` training samples)
+    * Then squaring each of them individually -- to keep the values positive, summing all the errors
+    * Then dividing be the number of training samples :math:`m` to compute the average.
+    * By convention and mathematical convenience, the sum of the errors are actually divided by :math:`2m` instead of only :math:`m`
+
+.. image:: images/ch1/ch1-cost-function-MSE.png
+    :align: center
 
 
-.. rubric:: Multivariable regression
+Minimizing the cost function
+----------------------------
+* The overall goal when we are building an ML model is to minimize the cost function, and hence improve the quality of the predictions by the model.
+
+.. image:: images/ch1/ch1-minimize-cost.png
+    :align: center
+
+* So the overall problem is to find :math:`w` for which :math:`J(w)` will be minimal.
+* For the training data shown in the image below (i.e. the values of math:`X` and math:`y`), we plot some values of :math:`J(w)` for some :math:`w` values.
+
+    * As the image shows, when :math:`w=1`, the value of J(w)` is minimum.
+
+.. image:: images/ch1/ch1-cost-plot.png
+    :align: center
+
+* How to choose the value of :math:`w`?
 
