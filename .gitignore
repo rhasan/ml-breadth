@@ -1,7 +1,4 @@
 .DS_Store
 .idea/
 venv
-make.bat
-Makefile
-build
-source
+
