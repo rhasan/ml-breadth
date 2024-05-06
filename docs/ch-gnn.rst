@@ -12,7 +12,9 @@ Graph Neural Networks (GNNs) have emerged as a powerful tool for machine learnin
 First, let's install the necessary libraries:
 
 ..  code-block:: bash
+
     pip install torch torch-geometric
+
 This will install PyTorch and PyTorch Geometric. PyTorch Geometric is a library for geometric deep learning (graph neural networks) built on top of PyTorch. We will only use a dataset from this library in this tutorial. We will code our GNN from scratch.
 
 What are Graph Neural Networks?
@@ -25,6 +27,7 @@ Implementing a Simple GNN with PyTorch
 We will code a node classification GNN. To keep things simple, our GNN will consist of just two fully connected layers and will use the adjacency matrix of the graph for message passing. Here's the code for our GNN:
 
 .. code-block:: python
+
     import torch
     import torch.nn as nn
     import torch.nn.functional as F
@@ -54,6 +57,7 @@ The labels associated with each node are based on the communities formed after a
 Now let's look at the code for loading and pre-processing the dataset:
 
 .. code-block:: python
+
     from torch_geometric.datasets import KarateClub
     from torch_geometric.utils import to_dense_adj
 
@@ -67,12 +71,12 @@ Now let's look at the code for loading and pre-processing the dataset:
     # Get the adjacency matrix
     adjacency = to_dense_adj(dataset[0].edge_index)[0]
 
-
 Training the GNN
 ----------------
 To train our GNN, we define a training loop where we compute the cross-entropy loss between the GNN's predictions and the actual labels, and update the model's parameters using backpropagation and Adam optimization.
 
 .. code-block:: python
+
     import torch.optim as optim
 
     # Initialize the model, optimizer and loss function
@@ -100,12 +104,12 @@ To train our GNN, we define a training loop where we compute the cross-entropy l
 
         print(f'Epoch {epoch + 1}, Loss: {loss.item()}')
 
-
 Making Predictions with the GNN
 --------------------------------
 Once the model is trained, we can use it to make predictions on unseen data. In our case, we use the trained model to predict the class of each node in the Karate Club graph. By comparing the predicted classes with the actual classes, we can evaluate the performance of our GNN.
 
 .. code-block:: python
+
     # Set model to evaluation mode
     model.eval()
 
@@ -119,7 +123,6 @@ Once the model is trained, we can use it to make predictions on unseen data. In 
 
     # Print the actual classes
     print('Actual classes:', labels.numpy())
-
 
 The torch.max function returns the maximum value along a given dimension in a tensor. In this case, we use it to get the index of the maximum value in each row of the outputs tensor, which gives us the predicted class for each node.
 
