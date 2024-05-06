@@ -22,6 +22,14 @@ What are Graph Neural Networks?
 Traditional machine learning algorithms assume that instances are `independently and identically distributed (i.i.d.) <https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables>`_. However, in many real-world applications, data instances are not isolated but exist in the form of graphs, where relationships between instances matter.
 Graph Neural Networks are a type of neural network designed to perform inference on data structured as graphs. They extend traditional neural networks to handle graph data, capturing the dependencies between connected nodes in a graph.
 
+How do GNNs work?
+------------------------------------
+A GNN operates in steps, often referred to as "layers", similar to layers in deep learning models. In each layer, every node in the graph receives information (i.e., features) from its neighbors and updates its own features based on this information. This process is often referred to as "message passing".
+
+After several layers, each node's features become a function of the features of all nodes in its neighborhood. In other words, the GNN aggregates information from a node's local neighborhood to learn a meaningful representation of the node.
+
+Now, let's see how we can implement a simple GNN with PyTorch.
+
 Implementing a Simple GNN with PyTorch
 ------------------------------------
 We will code a node classification GNN. To keep things simple, our GNN will consist of just two fully connected layers and will use the adjacency matrix of the graph for message passing. Here's the code for our GNN:
@@ -44,6 +52,10 @@ We will code a node classification GNN. To keep things simple, our GNN will cons
             x = F.relu(x)
             x = self.fc2(x)
             return x
+
+This is an extremely basic version of a GNN. Our GNN has two linear layers (fc1 and fc2), with a ReLU activation function applied after the first layer. The forward method takes as input a feature matrix x and an adjacency matrix. The line x = torch.mm(adjacency, x) performs the message passing step: it multiplies the adjacency matrix with the feature matrix, effectively summing up the features of each node's neighbors. The updated features then pass through the two linear layers.
+
+
 
 Loading the Dataset and Preprocessing
 ------------------------------------
@@ -70,6 +82,8 @@ Now let's look at the code for loading and pre-processing the dataset:
 
     # Get the adjacency matrix
     adjacency = to_dense_adj(dataset[0].edge_index)[0]
+
+We use the to_dense_adj function from PyG to convert the edge index tensor to a dense adjacency matrix. As we mention before, the KarateClub dataset has 34 nodes, each with a 34-dimensional one-hot encoded feature vector, and 4 classes. Our GNN model uses these as the input dimension and output dimension, respectively.
 
 Training the GNN
 ----------------
