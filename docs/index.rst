@@ -10,3 +10,4 @@ Welcome to ml-breath's documentation!
    :maxdepth: 3
 
    ./ch1-bsics.rst
+   ./ch-gnn.rst
