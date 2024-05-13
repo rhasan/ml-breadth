@@ -11,4 +11,3 @@ Welcome to ml-breath's documentation!
 
    ./ch1-bsics.rst
    ./ch-evaluation.rst
-   ./ch-gnn.rst
