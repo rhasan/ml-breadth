@@ -140,6 +140,54 @@ The gradient is defined as (i.e. by taking partial derivatives of :math:`J(w, b)
 
 Here *simultaniously* means that we calculate the partial derivatives for all the parameters before updating any of the parameters.
 
+Why partial derivatives
+^^^^^^^^^^^^^^^^^^^^^^^
+
+For the purpose of simplification, let us assume we only have the parameter :math:`w`. The figure below plots a bowl shaped cost function.
+
+The partial derivative w.r.t to a parameter calculates the slope of the cost curve.
+
+A way to think about the derivative at a point in the cost curve is: 
+
+* To draw a tangent line which touches the point
+* The slope of this drawn line is the derivative of function j at this point
+* We can draw a trigle to get the slope which is computed by dividing the height by the width
+ 
+
+.. image:: images/ch1/ch1-slopes.png
+    :align: center
+
+* On the right side of the plot, the derivative is positive.
+* On the left it is negative.
+* This means that the after the update, the gradiant descent is taking a step towards the minimum.
+
+Learning rate
+^^^^^^^^^^^^^
+The choice of the learning rate :math:`\alpha` has a huge impact on the efficiency of gradiant execution.
+
+*  If learning rate is too small, gradiant descent maybe slow.
+*  If learning rate is too large, gradiant descent may overshoot and never reach minimum i.e. never converge.
+
+
+.. image:: images/ch1/ch1-learning-rate-converge.png
+    :align: center
+
+
+**What happens if gradient descent is already at a local minimum?**
+
+* Gradient descent doesn't update any longer because the slope at the minimum is 0 and which gets multiplied by :math:`\alpha` but nothing gets updated because :math:`\alpha * 0 = 0`.
+* This is exactly the desired behaviour becuase once gradient descent reaches a minimum, we do not want it to update any further. 
+
+.. image:: images/ch1/ch1-learning-rate-local-mimimum.png
+    :align: center
+
+**Why can gradient descent reach local minimum with a fixed learning rate?**
+
+* As gradient descent gets closer to a local minimum, the derivative gets closer and closer to 0, hence the steps become smaller and smaller.
+
+.. image:: images/ch1/ch1-learning-rate.png
+    :align: center
+
 Implement Gradient Descent
 --------------------------------
 We will implement gradient descent algorithm for one feature. We will need three functions. 
@@ -206,6 +254,8 @@ Now we implement equation (3) below in `gradient_descent`. The details of the im
     Returns:
       w (scalar): Updated value of parameter after running gradient descent
       b (scalar): Updated value of parameter after running gradient descent
+      J_history (List): History of cost values
+      p_history (list): History of parameters [w,b] 
       """
     
     # An array to store cost J and w's at each iteration primarily for graphing later
@@ -218,7 +268,68 @@ Now we implement equation (3) below in `gradient_descent`. The details of the im
 
         # Update Parameters using equation (3) above
         b = b - alpha * dj_db                            
-        w = w - alpha * dj_dw                            
+        w = w - alpha * dj_dw
+
+        # Save cost J at each iteration
+        if i<100000:      # prevent resource exhaustion 
+            J_history.append( cost_function(x, y, w , b))
+            p_history.append([w,b])
+        # Print cost at intervals 10 times or as many iterations if < 10
+        if i% math.ceil(num_iters/10) == 0:
+            print(f"Iteration {i:4}: Cost {J_history[-1]:0.2e} ",
+                  f"dj_dw: {dj_dw: 0.3e}, dj_db: {dj_db: 0.3e}  ",
+                  f"w: {w: 0.3e}, b:{b: 0.5e}")
+
+    return w, b  #return w and b; and J, w history for plotting
+
+Now let us call and run gradiant descent for our sample data:
+
+.. code-block:: python
+
+    # initialize parameters
+    w_init = 0
+    b_init = 0
+    # some gradient descent settings
+    iterations = 10000
+    tmp_alpha = 1.0e-2
+    # run gradient descent
+    w_final, b_final, J_hist, p_hist = gradient_descent(x_train ,y_train, w_init, b_init, tmp_alpha, 
+                                                        iterations, compute_cost, compute_gradient)
+    print(f"(w,b) found by gradient descent: ({w_final:8.4f},{b_final:8.4f})")
+
+The output would be as below:
+
+.. code-block:: bash
+
+    Iteration    0: Cost 7.93e+04  dj_dw: -6.500e+02, dj_db: -4.000e+02   w:  6.500e+00, b: 4.00000e+00
+    Iteration 1000: Cost 3.41e+00  dj_dw: -3.712e-01, dj_db:  6.007e-01   w:  1.949e+02, b: 1.08228e+02
+    Iteration 2000: Cost 7.93e-01  dj_dw: -1.789e-01, dj_db:  2.895e-01   w:  1.975e+02, b: 1.03966e+02
+    Iteration 3000: Cost 1.84e-01  dj_dw: -8.625e-02, dj_db:  1.396e-01   w:  1.988e+02, b: 1.01912e+02
+    Iteration 4000: Cost 4.28e-02  dj_dw: -4.158e-02, dj_db:  6.727e-02   w:  1.994e+02, b: 1.00922e+02
+    Iteration 5000: Cost 9.95e-03  dj_dw: -2.004e-02, dj_db:  3.243e-02   w:  1.997e+02, b: 1.00444e+02
+    Iteration 6000: Cost 2.31e-03  dj_dw: -9.660e-03, dj_db:  1.563e-02   w:  1.999e+02, b: 1.00214e+02
+    Iteration 7000: Cost 5.37e-04  dj_dw: -4.657e-03, dj_db:  7.535e-03   w:  1.999e+02, b: 1.00103e+02
+    Iteration 8000: Cost 1.25e-04  dj_dw: -2.245e-03, dj_db:  3.632e-03   w:  2.000e+02, b: 1.00050e+02
+    Iteration 9000: Cost 2.90e-05  dj_dw: -1.082e-03, dj_db:  1.751e-03   w:  2.000e+02, b: 1.00024e+02
+    (w,b) found by gradient descent: (199.9929,100.0116)
 
 
-    return w, b  #return w and b
+* The cost starts large and rapidly declines.
+* The partial derivatives, `dj_dw`, and `dj_db` also get smaller, rapidly at first and then more slowly.
+* Progress slows though the learning rate, alpha, remains fixed.
+
+Predictions
+-----------
+We can use the optimal values of parameters :math:`w`  and  :math:`b` to predict housing values based on the learned parameters. As expected, the predicted values are nearly the same as the training values for the same housing. Aditionally, the value not in the training values is in line with the expected value.
+
+.. code-block:: python
+
+    print(f"1000 sqft house prediction {w_final*1.0 + b_final:0.1f} Thousand dollars")
+    print(f"1200 sqft house prediction {w_final*1.2 + b_final:0.1f} Thousand dollars")
+    print(f"2000 sqft house prediction {w_final*2.0 + b_final:0.1f} Thousand dollars")
+
+.. code-block:: bash
+
+    1000 sqft house prediction 300.0 Thousand dollars
+    1200 sqft house prediction 340.0 Thousand dollars
+    2000 sqft house prediction 500.0 Thousand dollars
