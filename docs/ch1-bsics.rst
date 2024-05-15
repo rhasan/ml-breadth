@@ -329,6 +329,7 @@ We can use the optimal values of parameters :math:`w`  and  :math:`b` to predict
     print(f"2000 sqft house prediction {w_final*2.0 + b_final:0.1f} Thousand dollars")
 
 .. code-block:: bash
+    :caption: Output
 
     1000 sqft house prediction 300.0 Thousand dollars
     1200 sqft house prediction 340.0 Thousand dollars
