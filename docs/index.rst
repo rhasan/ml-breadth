@@ -10,4 +10,5 @@ Welcome to ml-breath's documentation!
    :maxdepth: 2
 
    ./ch1-bsics.rst
+   ./ch2-vectors.rst
    ./ch-evaluation.rst
