@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'ml-breath'
+project = 'ml-breadth'
 copyright = '2024, Rakebul Hasan'
 author = 'Rakebul Hasan'
 
