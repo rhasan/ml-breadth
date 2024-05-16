@@ -232,12 +232,12 @@ Vector Vector dot product
 
 Dot product with for loop
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-**Using a for loop**, the code below shows an implementation of the following equation:
+We use a foor loop to implement the dot product using the following equation:
 
 .. math::
      x = \sum_{i=0}^{n-1} a_i b_i
 
-Here `a` and `b` vectors of the same dimension.
+Here `a` and `b` are vectors of the same dimension.
 
 
 .. code-block:: python
@@ -364,7 +364,7 @@ Matrices
 * In notation, matrices are denoted with capitol, bold letter such as :math:`\mathbf{X}`. 
 * `m` is often the number of rows and `n` the number of columns. 
 * The elements of a matrix can be referenced with a two dimensional index. 
-* In math settings, numbers in the index typically run from 1 to n. In computer science and these labs, indexing will run from 0 to n-1.
+* In math settings, numbers in the index typically run from 1 to n. In computer science, indexing will run from 0 to n-1.
 
 
 .. image:: images/ch2/ch2-matrices.png
