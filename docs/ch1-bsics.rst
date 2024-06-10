@@ -53,7 +53,7 @@ Minimizing the cost function
     :align: center
 
 * So the overall problem is to find :math:`w` for which :math:`J(w)` will be close to the minimum value.
-* For the training data shown in the image below (i.e. the values of math:`X` and math:`y`), we plot some values of :math:`J(w)` for some :math:`w` values.
+* For the training data shown in the image below (i.e. the values of :math:`X` and :math:`y`), we plot some values of :math:`J(w)` for some :math:`w` values.
 
     * As the image shows, when :math:`w=1`, the value of :math:`J(w)` is minimum.
 
@@ -83,7 +83,7 @@ In linear regression, we utilize input training data to fit the parameters :math
 .. math::
     J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2\tag{2}
 
-Here we show a simple implementation cost calculation for linear regression:
+Here we show a simple implementation of cost calculation for linear regression:
 
 .. code-block:: python
 
@@ -150,7 +150,7 @@ The partial derivative w.r.t to a parameter calculates the slope of the cost cur
 A way to think about the derivative at a point in the cost curve is: 
 
 * To draw a tangent line which touches the point
-* The slope of this drawn line is the derivative of function j at this point
+* The slope of this drawn line is the derivative of function :math:`J` at this point
 * We can draw a trigle to get the slope which is computed by dividing the height by the width
  
 
@@ -188,8 +188,8 @@ The choice of the learning rate :math:`\alpha` has a huge impact on the efficien
 .. image:: images/ch1/ch1-learning-rate.png
     :align: center
 
-Implement Gradient Descent
---------------------------------
+Implementation of Gradient Descent
+----------------------------------
 We will implement gradient descent algorithm for one feature. We will need three functions. 
 
 * :code:`compute_gradient` implementing equation (4) and (5) above

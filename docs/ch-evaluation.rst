@@ -6,7 +6,7 @@ Evaluation in Machine Learning
 ==============================
 
 * **Offline evaluation**: offline evaluation is done to evaluate the performance of machine learning models. Offline metrics measure how close the predictions by the machine learning model on the evaluation dataset are to the graound truth dataset.
-* **Online evaluation**: online evaluation measures how the deployed model performs in production. One evaluation metrics are typlically tied to to business examples.
+* **Online evaluation**: online evaluation measures how the deployed model performs in production. Online evaluation metrics are typlically tied to to business objectives.
 
 .. list-table:: Offline evaluation metrics
    :widths: 25 25
