@@ -12,3 +12,4 @@ Welcome to ml-breadth's documentation!
    ./ch1-bsics.rst
    ./ch2-vectors.rst
    ./ch-evaluation.rst
+   ./ch-faq.rst
