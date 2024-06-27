@@ -2,7 +2,10 @@
 
 .. contents::
     :local:
-    :depth: 2
+    :depth: 3
+
+Common Interview Questions
+##########################
 
 Gradient Descent and Backpropagation
 ====================================
@@ -286,7 +289,7 @@ For a simple neural network with one hidden layer using Sigmoid activation and M
      
      .. math::
        W' \leftarrow W' - \eta \frac{\partial L}{\partial W'}
-       
+
        W \leftarrow W - \eta \frac{\partial L}{\partial W}
      
 
