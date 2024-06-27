@@ -281,7 +281,7 @@ For a simple neural network with one hidden layer using Sigmoid activation and M
      .. math::
        \frac{\partial L}{\partial z} = (\hat{y} - y) \cdot W' \cdot \sigma'(z)
      
-     Where \( \sigma'(z) = \sigma(z) (1 - \sigma(z)) \).
+     Where :math:`\sigma'(z) = \sigma(z) (1 - \sigma(z))`.
 
 3. **Weights:**
    
@@ -629,7 +629,7 @@ Common Activation Functions
 
 3. **Rectified Linear Unit (ReLU)**:
     
-    - **Function**: :math:`\text{ReLU}(x) = \max(0, x) \)`
+    - **Function**: :math:`\text{ReLU}(x) = \max(0, x)`
     - **Range**: [0, ∞)
     - **Pros**: Simple and effective, helps mitigate vanishing gradient problems.
     - **Cons**: Can suffer from dying ReLUs, where neurons get stuck in the inactive state (outputting 0) and stop learning.
@@ -657,7 +657,7 @@ Common Activation Functions
 
 7. **Scaled Exponential Linear Unit (SELU)**:
     
-    - **Function**: :math:`\text{SELU}(x) = \lambda x` if :math:`x > 0 `, else :math:`\lambda \alpha (e^x - 1)`
+    - **Function**: :math:`\text{SELU}(x) = \lambda x` if :math:`x > 0`, else :math:`\alpha (e^x - 1)`
     - **Range**: (-∞, ∞)
     - **Pros**: Self-normalizing properties, maintaining mean and variance across layers which can lead to faster and more stable training.
     - **Cons**: Requires careful initialization and specific architectural considerations (e.g., the use of Alpha Dropout).
